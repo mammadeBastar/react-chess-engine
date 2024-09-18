@@ -1,0 +1,16 @@
+:root {
+    --block-size: 100px;
+    --light-block: #e5f5e4;
+    --dark-block: #3b401d;
+    --bg-color: #151515;
+}
+@media all and (max-width : 1200px) {
+    :root {
+        --block-size : 75px;
+    }
+}
+@media all and (max-width : 450px) {
+    :root {
+        --block-size: 50px;
+    }
+}

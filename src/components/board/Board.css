@@ -1,0 +1,25 @@
+.board {
+    display: grid;
+    position: relative;
+    grid-template-columns: calc(.20*var(--block-size) calc(8*var(--block-size)));
+}
+
+.blockes {
+    display: grid;
+    grid-template-columns: repeat(8, var(--block-size));
+    grid-template-rows: repeat(8, var(--block-size));
+    width: calc(8*var(--block-size));
+    height: calc(8 * var(--block-size));
+}
+
+.block {
+    position: relative;
+}
+
+.block--light {
+    background: var(--light-block);
+}
+    
+.block--dark {
+    background: var(--dark-block)
+}
