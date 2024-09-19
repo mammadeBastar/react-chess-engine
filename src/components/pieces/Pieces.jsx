@@ -1,35 +1,57 @@
 import './Pieces.css'
 import Piece from './Piece.jsx'
+import { useState, useRef } from 'react'
+import { createPosition, copyPosition } from '../../helper.jsx'
+import { useAppContext } from '../../contexts/Context.jsx'
+import { makeNewMove } from '../../reducer/actions/move.jsx'
 
 const Pieces = () => {
-    const position = new Array(8).fill('').map(x => new Array(8).fill(''))
 
-    for (let i = 0; i < 8; i++){
-        position[1][i] = 'wp'
-        position[6][i] = 'bp'
+    const ref = useRef()
+
+    const {appState, dispatch} = useAppContext()
+
+    const currentPosition = appState.position[appState.position.length-1]
+
+    const movecalc = e => {
+        const {width, left, top} = ref.current.getBoundingClientRect()
+        const size = width / 8
+        const y = Math.floor((e.clientX - left) / size)
+        const x = 7 - Math.floor((e.clientY - top) / size)
+        return {x, y}
     }
 
-    position[0][0] = position[0][7] = 'wr'
-    position[0][1] = position[0][6] = 'wn'
-    position[0][2] = position[0][5] = 'wb'
-    position[0][3] = 'wq'
-    position[0][4] = 'wk'
+    const onDrop = e => {
+        const newPosition = copyPosition(currentPosition)
+        const [p, rank, file] = e.dataTransfer.getData('text').split(',')
+        const {x, y} = movecalc(e)
+        
+        newPosition[Number(rank)][Number(file)] = ''
+        newPosition[x][y] = p
 
-    position[7][0] = position[7][7] = 'br'
-    position[7][1] = position[7][6] = 'bn'
-    position[7][2] = position[7][5] = 'bb'
-    position[7][3] = 'bq'
-    position[7][4] = 'bk'
+        dispatch(makeNewMove({newPosition}))
 
-    return <div className='pieces'>
-        {position.map((r, rank) =>
+    }
+
+
+    const onDragOver = e => {
+        e.preventDefault()
+    }
+
+    return <div 
+        ref={ref}
+        className='pieces'
+        onDrop={onDrop}
+        onDragOver={onDragOver}
+    >
+        {currentPosition.map((r, rank) =>
             r.map((f, file) => 
-                position[rank][file]
+                currentPosition[rank][file]
                 ? <Piece
                     key={rank + ' ' + file}
                     rank = {rank}
                     file = {file}
-                    piece = {position[rank][file]}
+                    piece = {currentPosition[rank][file]}
                 />
                 :null
         )
