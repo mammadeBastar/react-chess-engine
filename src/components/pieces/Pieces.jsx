@@ -3,7 +3,9 @@ import Piece from './Piece.jsx'
 import { useState, useRef } from 'react'
 import { createPosition, copyPosition } from '../../helper.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
-import { makeNewMove } from '../../reducer/actions/move.jsx'
+import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
+import engine from '../../engine/engine.jsx'
+import { promotionPop } from '../../reducer/actions/popup.jsx'
 
 const Pieces = () => {
 
@@ -21,16 +23,37 @@ const Pieces = () => {
         return {x, y}
     }
 
-    const onDrop = e => {
-        const newPosition = copyPosition(currentPosition)
-        const [p, rank, file] = e.dataTransfer.getData('text').split(',')
+    const popPromotionUp = ({row, column, x, y}) =>{
+        dispatch(promotionPop({
+            row : Number(row), 
+            column : Number(column), 
+            x, 
+            y
+        }))
+    }
+
+    const mew = e => {
         const {x, y} = movecalc(e)
+        const [piece , row, column] = e.dataTransfer.getData('text').split(',')
+        if(appState.posMoves.find(m => m[0] === x && m[1] ===y)){
+            if((piece == 'wp' && x === 7) || (piece === 'bp' && x ===0)){
+                popPromotionUp({row, column, x, y})
+                return 
+            }
+            const newPosition = engine.move({
+                pos : currentPosition,
+                piece , row, column,
+                x, y
+            })
+            dispatch(makeNewMove({newPosition}))
+        }
+        dispatch(clearPos())
+    }
+
+    const onDrop = e => {
+        e.preventDefault()
+        mew(e)
         
-        newPosition[Number(rank)][Number(file)] = ''
-        newPosition[x][y] = p
-
-        dispatch(makeNewMove({newPosition}))
-
     }
 
 
@@ -44,14 +67,14 @@ const Pieces = () => {
         onDrop={onDrop}
         onDragOver={onDragOver}
     >
-        {currentPosition.map((r, rank) =>
-            r.map((f, file) => 
-                currentPosition[rank][file]
+        {currentPosition.map((r, row) =>
+            r.map((c, column) => 
+                currentPosition[row][column]
                 ? <Piece
-                    key={rank + ' ' + file}
-                    rank = {rank}
-                    file = {file}
-                    piece = {currentPosition[rank][file]}
+                    key={row + ' ' + column}
+                    row = {row}
+                    column = {column}
+                    piece = {currentPosition[row][column]}
                 />
                 :null
         )

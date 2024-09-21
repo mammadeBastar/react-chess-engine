@@ -1,5 +1,9 @@
 const actionTypes = {
-    "NEW_MOVE" : "NEW_MOVE"
+    "CLEAR_POSITION" : "CLEAR_POSITION",
+    "NEW_MOVE" : "NEW_MOVE",
+    "GENERATE_POSSIBLE_MOVES" : "GENERATE_POSSIBLE_MOVES",
+    "PROMOTION_POP" : "PROMOTION_POP",
+    "CONTINUE_GAME" : "CONTINUE_GAME"
 }
 
 export default actionTypes

@@ -23,3 +23,27 @@
 .block--dark {
     background: var(--dark-block)
 }
+
+.highlighted::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(.5*var(--block-size));
+    height: calc(.5*var(--block-size));
+    background-color: var(--highlight);
+    border-radius: 50%;
+    left: 25%;
+    top: 25%;
+}
+.underAttack:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: calc(var(--block-size) - 12px);
+    height: calc(var(--block-size) - 12px);
+    background-color: var(--highlight);
+    border-radius: 50%;
+    left: 0;
+    top: 0;
+    border: 6px solid var(--highlight);
+}

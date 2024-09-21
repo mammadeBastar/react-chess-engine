@@ -1,5 +1,5 @@
 
-export const getCharacter = file => String.fromCharCode(file+96)
+export const getCharacter = column => String.fromCharCode(column+96)
 
 export const createPosition = () => {
     const position = new Array(8).fill('').map(x => new Array(8).fill(''))
@@ -28,9 +28,9 @@ export const createPosition = () => {
 export const copyPosition = (position) => {
     const newposition = new Array(8).fill('').map(x => new Array(8).fill(''))
 
-    for(let rank = 0; rank < 8; rank++){
-        for(let file =0; file < 8;file++){
-            newposition[rank][file] = position[rank][file]
+    for(let row = 0; row < 8; row++){
+        for(let column =0; column < 8;column++){
+            newposition[row][column] = position[row][column]
         }
     }
     return newposition

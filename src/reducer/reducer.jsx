@@ -1,3 +1,4 @@
+import { Status } from "../constant"
 import actionTypes from "./actionTypes"
 
 export const reducer = (state, action) =>{
@@ -7,7 +8,12 @@ export const reducer = (state, action) =>{
 
             let {turn, position} = state
 
-            turn = turn === 'w' ? 'b' : 'w'
+            if(turn === 'w'){
+                turn = 'b'
+            }
+            else{
+                turn = 'w'
+            }
 
             position = [
                 ...position,
@@ -19,6 +25,35 @@ export const reducer = (state, action) =>{
                 ...state,
                 turn,
                 position 
+            }
+        }
+
+        case actionTypes.GENERATE_POSSIBLE_MOVES : {
+            return {
+                ...state,
+                posMoves : action.payload.posMoves
+            }
+        }
+
+        case actionTypes.CLEAR_POSITION : {
+            return {
+                ...state,
+                posMoves : []
+            }
+        }
+
+        case actionTypes.PROMOTION_POP : {
+            return {
+                ...state,
+                status : Status.promote,
+                promotingLocation : {...action.payload}
+            }
+        }
+        case actionTypes.CONTINUE_GAME : {
+            return {
+                ...state,
+                status : Status.ongoing,
+                promotingLocation : null
             }
         }
 
