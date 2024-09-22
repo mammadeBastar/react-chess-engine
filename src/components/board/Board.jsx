@@ -5,6 +5,8 @@ import Pieces from '../pieces/Pieces.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
 import Popups from '../popUps/Popups.jsx'
 import '../pieces/Pieces.css'
+import engine from '../../engine/engine.jsx'
+import { kingPos } from '../../engine/move.jsx'
 
 const Board = () => {
     
@@ -13,6 +15,13 @@ const Board = () => {
 
     const {appState} = useAppContext()
     const position = appState.position[appState.position.length - 1]
+
+    const checked = (() => {
+        if (engine.inCheck({nextPos : position,prevPos: appState.position[appState.position.length-1], color : appState.turn})){
+            return kingPos({pos : position, color : appState.turn})
+        }
+        return null
+    })()
 
     const getClassName = (i, j) => {
         let c = 'block'
@@ -25,6 +34,10 @@ const Board = () => {
             else{
                 c += ' highlighted'
             }
+        }
+
+        if(checked && (checked[0] === i) && (checked[1] === j)){
+            c += ' incheck'
         }
 
         return c

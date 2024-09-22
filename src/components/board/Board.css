@@ -23,6 +23,17 @@
 .block--dark {
     background: var(--dark-block)
 }
+.incheck::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: var(--block-size);
+    height: var(--block-size);
+    background-color: var(--check);
+    border-radius: 20%;
+    left: 0%;
+    top: 0%;
+}
 
 .highlighted::after {
     content: '';

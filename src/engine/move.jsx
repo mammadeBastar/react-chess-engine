@@ -19,3 +19,29 @@ export const movePawn = ({pos, piece, row, column, x, y}) => {
 
     return newPosition
 }
+export const kingPos = ({pos, color}) => {
+    let kingP
+    pos.forEach((row, x) => {
+        row.forEach((column, y) =>{
+            if(pos[x][y] === color + 'k'){
+                kingP = [x, y] 
+            }
+        })
+    })
+    return kingP
+}
+export const inBordPieces = ({pos, color}) => {
+    const pieces = []
+    pos.forEach((row, x) => {
+        row.forEach((column, y) =>{
+            if(pos[x][y].startsWith(color)){
+                pieces.push({
+                    piece : pos[x][y],
+                    row : x,
+                    column : y
+                })
+            }
+        })
+    })
+    return pieces
+}
