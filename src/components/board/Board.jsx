@@ -6,19 +6,23 @@ import { useAppContext } from '../../contexts/Context.jsx'
 import Popups from '../popUps/Popups.jsx'
 import '../pieces/Pieces.css'
 import engine from '../../engine/engine.jsx'
-import { kingPos } from '../../engine/move.jsx'
+import { inBordPieces, kingPos } from '../../engine/move.jsx'
+import { checkMate } from '../../reducer/actions/pipe.jsx'
+import { Status } from '../../constant.jsx'
+import Piece from '../pieces/Piece.jsx'
 
 const Board = () => {
     
     const rows = Array(8).fill().map((x, i) => 8 - i)
     const columns = Array(8).fill().map((x, i) => i + 1)
 
-    const {appState} = useAppContext()
+    const {appState, dispatch} = useAppContext()
     const position = appState.position[appState.position.length - 1]
 
     const checked = (() => {
-        if (engine.inCheck({nextPos : position,prevPos: appState.position[appState.position.length-1], color : appState.turn})){
-            return kingPos({pos : position, color : appState.turn})
+
+        if (engine.inCheck({pos : appState.position[appState.position.length-1], prevPos: appState.position[appState.position.length-2], color : appState.turn})){
+            return kingPos({pos : appState.position[appState.position.length-1], color : appState.turn})
         }
         return null
     })()
@@ -37,9 +41,13 @@ const Board = () => {
         }
 
         if(checked && (checked[0] === i) && (checked[1] === j)){
-            c += ' incheck'
+            if(engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
+                c += ' mated'
+            }
+            else{
+                c += ' incheck'
+            }
         }
-
         return c
     }
     return <div className = 'board'>

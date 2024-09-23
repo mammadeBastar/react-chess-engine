@@ -5,7 +5,7 @@ const Piece = ({row, column, piece}) => {
 
 
     const {appState, dispatch} = useAppContext()
-    const {turn, position} = appState;
+    const {turn, position, allowedCastle} = appState
     let sel = ''
 
     
@@ -16,7 +16,7 @@ const Piece = ({row, column, piece}) => {
             e.target.style.display = 'none'
             }, 0)
         if(turn === piece[0]){
-            const posMoves = engine.possibleValMoves({posHistory:position, piece, row, column})
+            const posMoves = engine.possibleValMoves({posHistory:position, piece, row, column,allowedCastle : allowedCastle[turn]})
             dispatch(generatePosMoves({posMoves}))
         }
     }

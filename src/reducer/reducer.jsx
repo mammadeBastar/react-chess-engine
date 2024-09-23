@@ -57,6 +57,29 @@ export const reducer = (state, action) =>{
             }
         }
 
+        case actionTypes.DISABLE_CASTLE : {
+            let {turn, allowedCastle} = state
+            allowedCastle[turn] = action.payload
+            return {
+                ...state,
+                allowedCastle 
+            }
+        }
+
+        case actionTypes.CHECK_MATE : {
+            if(action.payload === 'w'){
+                return {
+                    ...state,
+                    status : Status.white_won
+                }
+            }
+            else{
+                return {
+                    ...state,
+                    status : Status.black_won
+                }
+            }
+        }
         default:
             return state
     }

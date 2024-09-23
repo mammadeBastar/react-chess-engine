@@ -1,3 +1,5 @@
+import engine from "./engine"
+
 export const possibleRookMoves = ({pos, piece, row, column}) => {
     const moves = []
     const playerColor = piece[0]
@@ -155,5 +157,38 @@ export const pawnCaptures = ({pos, piece, row, column, prevPos}) => {
             moves.push([row + dir, column-1])
         }
     }
+    
     return moves
 }
+export const castlingMoves =({pos,prevPos , piece, row, column, allowedCastle}) =>{
+    const moves = []
+    let r = piece[0] === 'w' ? 0 : 7
+    if(column !== 4){
+        return moves
+    }
+    else if(row !== r){
+        return moves
+    }
+    else {
+        if(['l', 'lr'].includes(allowedCastle) &&
+        pos[r][3]  === '' &&
+        !engine.inAttack({pos, prevPos, color : piece[0], square: [r, 3]}) &&
+        pos[r][2] === '' &&
+        !engine.inAttack({pos, prevPos, color : piece[0], square: [r, 2]}) &&
+        pos[r][1] === '' &&
+        !engine.inAttack({pos, prevPos, color : piece[0], square: [r, 1]}) &&
+        pos[r][0] === piece[0] + 'r'){
+            moves.push([r, 2])
+        }
+        if(['r', 'lr'].includes(allowedCastle) &&
+        pos[r][5]  === '' &&
+        !engine.inAttack({pos, prevPos, color : piece[0], square: [r, 5]}) &&
+        pos[r][6] === '' &&
+        !engine.inAttack({pos, prevPos, color : piece[0], square: [r, 6]}) &&
+        pos[r][7] === piece[0] + 'r'){
+            moves.push([r, 6])
+        }
+    }
+    return moves
+
+}   

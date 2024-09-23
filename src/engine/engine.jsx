@@ -1,5 +1,5 @@
 import {kingPos, inBordPieces, movePawn, movePiece } from "./move.jsx"
-import {pawnCaptures,possiblePawnMoves, possibleRookMoves, possibleKnightMoves, possibleBishopMoves, possibleQueenMoves, possibleKingMoves} from "./possibleMoves.jsx"
+import {castlingMoves, pawnCaptures,possiblePawnMoves, possibleRookMoves, possibleKnightMoves, possibleBishopMoves, possibleQueenMoves, possibleKingMoves} from "./possibleMoves.jsx"
 
 const engine = {
     possibleRegMoves : function({posHistory, piece, row, column}){
@@ -23,7 +23,7 @@ const engine = {
             return possiblePawnMoves({pos, piece, row, column})
         }
     },
-    possibleValMoves : function({posHistory, piece, row, column}){
+    possibleValMoves : function({posHistory, piece, row, column,allowedCastle}){
         const pos = posHistory[posHistory.length - 1]
         const prevPos = posHistory[posHistory.length - 2]
         const valMoves = []
@@ -34,9 +34,15 @@ const engine = {
                 ...pawnCaptures({pos, piece, row, column, prevPos})
             ]
         }
+        if(piece.endsWith('k') && !this.inCheck({pos, prevPos, color : piece[0]})){
+            moves = [
+                ...moves,
+                ...castlingMoves({pos, prevPos, piece, row, column, allowedCastle})
+            ]
+        }
         moves.forEach(([x, y]) => {
             const nextPos = this.move({pos, piece, row, column, x, y})
-            if(!this.inCheck({nextPos, posHistory, color : piece[0]})){
+            if(!this.inCheck({pos :nextPos, prevPos : pos, color : piece[0]})){
                 valMoves.push([x, y])
             }
         })
@@ -50,14 +56,13 @@ const engine = {
                 return movePiece({pos, piece, row, column, x, y})
             }
     },
-    inCheck : function({nextPos, prevPos, color}){
-        const pos = prevPos
+    inCheck : function({pos, prevPos, color}){
         const enemyColor = color === 'w' ? 'b' : 'w'
-        let king = kingPos({pos : nextPos, color})
-        const enemyPieces = inBordPieces({pos : nextPos, color : enemyColor})
+        let king = kingPos({pos , color})
+        const enemyPieces = inBordPieces({pos , color : enemyColor})
         const enemyMoves = enemyPieces.reduce((acc, p) => [
             ...acc,
-            ...(p.piece.endsWith('p')) ? pawnCaptures({pos : nextPos, prevPos : pos, ...p}) : this.possibleRegMoves({posHistory : [pos, nextPos], ...p})
+            ...(p.piece.endsWith('p')) ? pawnCaptures({pos , prevPos , ...p}) : this.possibleRegMoves({posHistory : [prevPos, pos], ...p})
         ], [])
         if(enemyMoves.some(([x, y]) => king[0] === x && king[1] === y)){
             return true
@@ -65,6 +70,35 @@ const engine = {
         else{
             return false
         }
+    },
+    inAttack : function({pos, prevPos, color, square}){
+        const enemyColor = color === 'w' ? 'b' : 'w'
+        const enemyPieces = inBordPieces({pos , color : enemyColor})
+        const enemyMoves = enemyPieces.reduce((acc, p) => [
+            ...acc,
+            ...(p.piece.endsWith('p')) ? pawnCaptures({pos , prevPos , ...p}) : this.possibleRegMoves({posHistory : [prevPos, pos], ...p})
+        ], [])
+        if(enemyMoves.some(([x, y]) => square[0] === x && square[1] === y)){
+            return true
+        }
+        else{
+            return false
+        }
+    },
+    cantMove : function({posHistory, color, allowedCastle}){
+        const pos = posHistory[posHistory.length - 1]
+        let pieces = inBordPieces({pos , color})
+        let moves = []
+        pieces.forEach(p => {
+            moves = [
+                ...moves,
+                ...this.possibleValMoves({posHistory , piece : p.piece, row : p.row, column : p.column, allowedCastle})
+            ]
+        })
+        if(moves.length === 0 ){
+            return true
+        }
+        return false
     }
 }
 

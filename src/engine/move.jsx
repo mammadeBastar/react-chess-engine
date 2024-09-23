@@ -3,6 +3,17 @@ import { copyPosition } from "../helper"
 
 export const movePiece = ({pos, piece, row, column, x, y}) => {
     const newPosition = copyPosition(pos)
+    if(piece.endsWith('k')){
+        if(y - column === 2){
+        newPosition[row][7] = ''
+        newPosition[x][5] = piece[0] + 'r'
+        }
+        if(column - y === 2){
+            newPosition[row][0] = ''
+            newPosition[x][3] = piece[0] + 'r'
+            }
+    }
+    
     newPosition[row][column] = ''
     newPosition[x][y] = piece
 

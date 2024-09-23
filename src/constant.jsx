@@ -2,11 +2,9 @@ import { createPosition } from "./helper"
 
 export const Status = {
     'ongoing' : 'Ongoing',
-    'wcheck' : 'White in check',
-    'bcheck' : 'Black in check',
     'promote' : 'Promote',
-    'ggw' : 'White wins',
-    'ggb' : 'Black wins'
+    'white_won' : 'White_won',
+    'black_won' : 'Black_won'
 }
 
 export const initGameState = {
@@ -14,5 +12,9 @@ export const initGameState = {
     turn : 'w',
     posMoves : [],
     status : Status.ongoing,
-    promotingLocation : null
+    promotingLocation : null,
+    allowedCastle: {
+        w : 'lr',
+        b : 'lr'
+    }
 }

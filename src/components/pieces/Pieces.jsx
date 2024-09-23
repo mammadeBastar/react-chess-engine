@@ -4,6 +4,7 @@ import { useState, useRef } from 'react'
 import { createPosition, copyPosition } from '../../helper.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
 import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
+import { disableCastle } from '../../reducer/actions/pipe.jsx'
 import engine from '../../engine/engine.jsx'
 import { promotionPop } from '../../reducer/actions/popup.jsx'
 
@@ -45,6 +46,9 @@ const Pieces = () => {
                 piece , row, column,
                 x, y
             })
+            if(piece.endsWith('k')) dispatch(disableCastle({kind : 'none'}))
+            if(piece.endsWith('r') && column === 7) dispatch(disableCastle({kind : 'l'}))
+            if(piece.endsWith('r') && column === 0) dispatch(disableCastle({kind : 'r'}))
             dispatch(makeNewMove({newPosition}))
         }
         dispatch(clearPos())
@@ -53,7 +57,6 @@ const Pieces = () => {
     const onDrop = e => {
         e.preventDefault()
         mew(e)
-        
     }
 
 

@@ -34,6 +34,17 @@
     left: 0%;
     top: 0%;
 }
+.mated::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: var(--block-size);
+    height: var(--block-size);
+    background-color: var(--mate);
+    border-radius: 10%;
+    left: 0%;
+    top: 0%;
+}
 
 .highlighted::after {
     content: '';
