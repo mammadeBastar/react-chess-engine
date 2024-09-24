@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { createPosition, copyPosition } from '../../helper.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
 import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
-import { disableCastle } from '../../reducer/actions/pipe.jsx'
+import { checkMate, disableCastle , staleMate} from '../../reducer/actions/pipe.jsx'
 import engine from '../../engine/engine.jsx'
 import { promotionPop } from '../../reducer/actions/popup.jsx'
 
@@ -47,9 +47,23 @@ const Pieces = () => {
                 x, y
             })
             if(piece.endsWith('k')) dispatch(disableCastle({kind : 'none'}))
-            if(piece.endsWith('r') && column === 7) dispatch(disableCastle({kind : 'l'}))
-            if(piece.endsWith('r') && column === 0) dispatch(disableCastle({kind : 'r'}))
+            if(piece.endsWith('r') && column === 7){
+                dispatch(disableCastle({kind : 'l'}))
+            }
+            if(piece.endsWith('r') && column === 0){
+                dispatch(disableCastle({kind : 'r'}))
+            }
             dispatch(makeNewMove({newPosition}))
+            const next_turn = piece[0] === 'w' ? 'b' : 'w'
+            if(engine.cantMove({posHistory : [...appState.position, newPosition], color : next_turn, allowedCastle : appState.allowedCastle[next_turn]})){
+                dispatch(clearPos())
+                if(engine.inCheck({pos : newPosition, prevPos : currentPosition, color : next_turn})){
+                    dispatch(checkMate(piece[0]))
+                    return
+                }
+                dispatch(staleMate())
+                return
+            }
         }
         dispatch(clearPos())
     }

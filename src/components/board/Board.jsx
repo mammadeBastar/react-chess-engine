@@ -48,6 +48,13 @@ const Board = () => {
                 c += ' incheck'
             }
         }
+        if(!checked && engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
+            const wk = kingPos({pos : appState.position[appState.position.length-1], color : 'w'})
+            const bk = kingPos({pos : appState.position[appState.position.length-1], color : 'b'})
+            if ((wk[0] == i && wk[1] == j) || (bk[0] == i && bk[1] == j)){
+                c += ' stale'
+            }
+        }
         return c
     }
     return <div className = 'board'>

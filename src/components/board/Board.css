@@ -46,6 +46,18 @@
     top: 0%;
 }
 
+.stale::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: var(--block-size);
+    height: var(--block-size);
+    background-color: var(--stalemate);
+    border-radius: 10%;
+    left: 0%;
+    top: 0%;
+}
+
 .highlighted::after {
     content: '';
     display: block;

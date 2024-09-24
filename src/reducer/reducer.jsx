@@ -1,5 +1,6 @@
-import { Status } from "../constant"
+import { initGameState, Status } from "../constant"
 import actionTypes from "./actionTypes"
+import { createPosition } from "../helper"
 
 export const reducer = (state, action) =>{
 
@@ -78,6 +79,18 @@ export const reducer = (state, action) =>{
                     ...state,
                     status : Status.black_won
                 }
+            }
+        }
+        case actionTypes.STALEMATE : {
+            return {
+                ...state,
+                status : Status.stalemate
+            }
+        }
+        case actionTypes.START_GAME : {
+            return {
+                ...initGameState,
+                status : Status.ongoing
             }
         }
         default:

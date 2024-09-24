@@ -13,3 +13,13 @@ export const checkMate = color => {
         payload : color
     }
 }
+export const staleMate = () => {
+    return {
+        type : actionTypes.STALEMATE,
+    }
+}
+export const startGame = () => {
+    return {
+        type : actionTypes.START_GAME,
+    }
+}

@@ -1,0 +1,67 @@
+.modal {
+    background: rgba(40, 40, 40, 0.7);
+    display: grid;
+    position: absolute;
+    place-content: center;
+    grid-template-columns: calc(.20*var(--block-size) calc(8*var(--block-size)));
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+.modal .win {
+    display: grid;
+    position: relative;
+    width: calc(6 * (var(--block-size)));
+    height:calc(8.4*var(--block-size));
+    background: var(--modal-bg);
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    color: rgb(26, 131, 45);
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .modal .lose {
+    display: grid;
+    position: relative;
+    width: calc(6 * (var(--block-size)));
+    height:calc(8.4*var(--block-size));
+    background: var(--modal-bg);
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    color: var(--mate);
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .modal .draw {
+    display: grid;
+    position: relative;
+    width: calc(6 * (var(--block-size)));
+    height:calc(8.4*var(--block-size));
+    background: var(--modal-bg);
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    color: var(--stale-mate);
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .modal .setUp {
+    display: grid;
+    position: relative;
+    width: calc(6 * (var(--block-size)));
+    height:calc(8.4*var(--block-size));
+    background: var(--modal-bg);
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    color: var(--stale-mate);
+    font-size: 1.5em;
+    text-align: center;
+  }
