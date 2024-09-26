@@ -7,6 +7,7 @@ import { clearPos, makeNewMove, continueGame } from "../../../reducer/actions/mo
 import { flipBoard } from "../../../reducer/actions/pipe"
 import engine from "../../../engine/engine"
 import { checkMate, staleMate } from "../../../reducer/actions/pipe"
+import { Mode } from "../../../constant"
 
 const Promoting = () => {
     const opts = ['q', 'r', 'n', 'b']
@@ -59,7 +60,7 @@ const Promoting = () => {
             dispatch(staleMate())
             return
         }
-        dispatch(flipBoard())
+        if(appState.mode === Mode.pass_and_play) dispatch(flipBoard())
         dispatch(continueGame())
     }
 

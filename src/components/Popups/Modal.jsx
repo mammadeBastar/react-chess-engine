@@ -48,6 +48,17 @@ const Modal = ({mode}) => {
             <div className="modalMassage">
                 select o ina
             </div>
+            <div className="modeSelector">
+                <span className="options">
+                    pass and play
+                </span>
+                <span className="options" >
+                    play as white
+                </span>
+                <span className="options selected">
+                    play as black
+                </span>
+            </div>
             <div className="modalButton" onClick={onClick}>
                 click to start
             </div>

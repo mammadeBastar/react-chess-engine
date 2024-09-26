@@ -10,6 +10,11 @@ export const Status = {
     'settingup' : 'Settingup'
 }
 
+export const Mode = {
+    'pass_and_play' : 'Pass_and_play',
+    'play_as_white' : 'Play_ as_white',
+    'play_as_black' : 'Play_as_black'
+}
 export const initGameState = {
     position : [createPosition()],
     turn : 'w',
@@ -20,5 +25,6 @@ export const initGameState = {
         w : 'lr',
         b : 'lr'
     },
-    flipped : false
+    flipped : false,
+    mode : Mode.pass_and_play
 }

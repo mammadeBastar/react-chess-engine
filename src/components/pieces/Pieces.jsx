@@ -7,6 +7,7 @@ import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
 import { checkMate, disableCastle , flipBoard, staleMate} from '../../reducer/actions/pipe.jsx'
 import engine from '../../engine/engine.jsx'
 import { promotionPop } from '../../reducer/actions/popup.jsx'
+import { Mode } from '../../constant.jsx'
 
 const Pieces = () => {
 
@@ -67,7 +68,7 @@ const Pieces = () => {
                 dispatch(staleMate())
                 return
             }
-            dispatch(flipBoard())
+            if(appState.mode === Mode.pass_and_play) dispatch(flipBoard())
         }
         dispatch(clearPos())
     }
