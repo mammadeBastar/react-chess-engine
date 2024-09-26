@@ -93,6 +93,14 @@ export const reducer = (state, action) =>{
                 status : Status.ongoing
             }
         }
+        case actionTypes.FLIP_BOARD : {
+            let {flipped} = state
+            flipped = !flipped
+            return {
+                ...state,
+                flipped : flipped
+            }
+        }
         default:
             return state
     }

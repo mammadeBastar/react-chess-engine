@@ -116,7 +116,7 @@ export const possibleKingMoves = ({pos, piece, row, column}) => {
     return moves
 }
 export const possiblePawnMoves = ({pos, piece, row, column}) => {
-    const playerColor = piece[0]
+    const playerColor =  piece[0]
     const enemyColor = playerColor === 'w'? 'b' : 'w'
     const dir = playerColor === 'w' ? 1 : -1
     const moves = []

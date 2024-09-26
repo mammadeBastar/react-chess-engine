@@ -19,5 +19,6 @@ export const initGameState = {
     allowedCastle: {
         w : 'lr',
         b : 'lr'
-    }
+    },
+    flipped : false
 }

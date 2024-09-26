@@ -29,32 +29,61 @@ const Board = () => {
 
     const getClassName = (i, j) => {
         let c = 'block'
-        c += (i+j) % 2 === 0 ? ' block--light' : ' block--dark'
+        if(!appState.flipped){
+            c += (i+j) % 2 === 0 ? ' block--dark' : ' block--light'
+            if(appState.posMoves?.find(m => m[0] === i && m[1] ===j)){
+                if(position[i][j]){
+                    c+= ' underAttack'
+                }
+                else{
+                    c += ' highlighted'
+                }
+            }
+            if(checked && (checked[0] === i) && (checked[1] === j)){
+                if(engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
+                    c += ' mated'
+                }
+                else{
+                    c += ' incheck'
+                }
+            }
+            if(!checked && engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
+                const wk = kingPos({pos : appState.position[appState.position.length-1], color : 'w'})
+                const bk = kingPos({pos : appState.position[appState.position.length-1], color : 'b'})
+                if ((wk[0] == i && wk[1] == j) || (bk[0] == i && bk[1] == j)){
+                    c += ' stale'
+                }
+            }
+        }
+        else{
+            c += (i+j) % 2 === 0 ? ' block--light' : ' block--dark'
+            if(appState.posMoves?.find(m => m[0] === (7 - i) && m[1] ===j)){
+                if(position[7 - i][j]){
+                    c+= ' underAttack'
+                }
+                else{
+                    c += ' highlighted'
+                }
+            }
+            if(checked && (checked[0] === (7 -i)) && (checked[1] === j)){
+                if(engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
+                    c += ' mated'
+                }
+                else{
+                    c += ' incheck'
+                }
+            }
+            if(!checked && engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
+                const wk = kingPos({pos : appState.position[appState.position.length-1], color : 'w'})
+                const bk = kingPos({pos : appState.position[appState.position.length-1], color : 'b'})
+                if ((wk[0] == i && wk[1] == j) || (bk[0] == i && bk[1] == j)){
+                    c += ' stale'
+                }
+            }
+        }
+        
 
-        if(appState.posMoves?.find(m => m[0] === i && m[1] ===j)){
-            if(position[i][j]){
-                c+= ' underAttack'
-            }
-            else{
-                c += ' highlighted'
-            }
-        }
-
-        if(checked && (checked[0] === i) && (checked[1] === j)){
-            if(engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
-                c += ' mated'
-            }
-            else{
-                c += ' incheck'
-            }
-        }
-        if(!checked && engine.cantMove({posHistory : appState.position, color : appState.turn, allowedCastle : appState.allowedCastle})){
-            const wk = kingPos({pos : appState.position[appState.position.length-1], color : 'w'})
-            const bk = kingPos({pos : appState.position[appState.position.length-1], color : 'b'})
-            if ((wk[0] == i && wk[1] == j) || (bk[0] == i && bk[1] == j)){
-                c += ' stale'
-            }
-        }
+        
         return c
     }
     return <div className = 'board'>

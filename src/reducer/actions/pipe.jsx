@@ -23,3 +23,8 @@ export const startGame = () => {
         type : actionTypes.START_GAME,
     }
 }
+export const flipBoard = () => {
+    return {
+        type : actionTypes.FLIP_BOARD,
+    }
+}

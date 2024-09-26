@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { createPosition, copyPosition } from '../../helper.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
 import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
-import { checkMate, disableCastle , staleMate} from '../../reducer/actions/pipe.jsx'
+import { checkMate, disableCastle , flipBoard, staleMate} from '../../reducer/actions/pipe.jsx'
 import engine from '../../engine/engine.jsx'
 import { promotionPop } from '../../reducer/actions/popup.jsx'
 
@@ -19,8 +19,11 @@ const Pieces = () => {
     const movecalc = e => {
         const {width, left, top} = ref.current.getBoundingClientRect()
         const size = width / 8
-        const y = Math.floor((e.clientX - left) / size)
-        const x = 7 - Math.floor((e.clientY - top) / size)
+        let y = Math.floor((e.clientX - left) / size)
+        let x = 7 - Math.floor((e.clientY - top) / size)
+        if(appState.flipped){
+            x = 7 - x
+        }
         return {x, y}
     }
 
@@ -64,6 +67,7 @@ const Pieces = () => {
                 dispatch(staleMate())
                 return
             }
+            dispatch(flipBoard())
         }
         dispatch(clearPos())
     }
@@ -85,15 +89,15 @@ const Pieces = () => {
         onDragOver={onDragOver}
     >
         {currentPosition.map((r, row) =>
-            r.map((c, column) => 
-                currentPosition[row][column]
+            r.map((c, column) => {
+                return currentPosition[row][column]
                 ? <Piece
                     key={row + ' ' + column}
                     row = {row}
                     column = {column}
                     piece = {currentPosition[row][column]}
                 />
-                :null
+                :null}
         )
     )}
     </div>

@@ -4,6 +4,9 @@ import "./Promoting.css"
 import { copyPosition } from "../../../helper"
 import { promotionPop } from "../../../reducer/actions/popup"
 import { clearPos, makeNewMove, continueGame } from "../../../reducer/actions/move"
+import { flipBoard } from "../../../reducer/actions/pipe"
+import engine from "../../../engine/engine"
+import { checkMate, staleMate } from "../../../reducer/actions/pipe"
 
 const Promoting = () => {
     const opts = ['q', 'r', 'n', 'b']
@@ -46,6 +49,17 @@ const Promoting = () => {
 
         dispatch(clearPos())
         dispatch(makeNewMove({newPosition}))
+        const next_turn = color === 'w' ? 'b' : 'w'
+        if(engine.cantMove({posHistory : [...appState.position, newPosition], color : next_turn, allowedCastle : appState.allowedCastle[next_turn]})){
+            dispatch(clearPos())
+            if(engine.inCheck({pos : newPosition, prevPos : appState.position[appState.position.length -1], color : next_turn})){
+                dispatch(checkMate(color))
+                return
+            }
+            dispatch(staleMate())
+            return
+        }
+        dispatch(flipBoard())
         dispatch(continueGame())
     }
 

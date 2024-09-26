@@ -13,42 +13,42 @@ const Modal = ({mode}) => {
     }
     return <div className="modal">
         {(mode === Status.white_won) && (<div className="win">
-            <div>
+            <div className="modalMassage">
                 win
             </div>
-            <div onClick={onClick}>
+            <div className="modalButton" onClick={onClick}>
                 click to start
             </div>
             </div>)}
         {(mode === Status.black_won) && (<div className="lose">
-            <div>
+            <div className="modalMassage">
                 lose
             </div>
-            <div onClick={onClick}>
+            <div className="modalButton" onClick={onClick}>
                 click to start
             </div>
             </div>)}
         {(mode === Status.stalemate) && (<div className="draw">
-            <div>
+            <div className="modalMassage">
                 draw
             </div>
-            <div onClick={onClick}>
+            <div className="modalButton" onClick={onClick}>
                 click to start
             </div>
             </div>)}
         {(mode === Status.insuffisient) && (<div className="draw">
-            <div>
+            <div className="modalMassage">
                 draw
             </div>
-            <div onClick={onClick}>
+            <div className="modalButton" onClick={onClick}>
                 click to start
             </div>
             </div>)}
         {(mode === Status.settingup) && (<div className="setUp">
-            <div>
+            <div className="modalMassage">
                 select o ina
             </div>
-            <div onClick={onClick}>
+            <div className="modalButton" onClick={onClick}>
                 click to start
             </div>
             </div>)}

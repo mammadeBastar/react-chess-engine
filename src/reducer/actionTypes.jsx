@@ -7,7 +7,8 @@ const actionTypes = {
     "DISABLE_CASTLE" : "DISABLE_CASTLE",
     "CHECK_MATE" : "CHECK_MATE",
     "STALEMATE" : "STALEMATE",
-    "START_GAME" : "START_GAME"
+    "START_GAME" : "START_GAME",
+    "FLIP_BOARD" : "FLIP_BOARD"
 }
 
 export default actionTypes
