@@ -1,6 +1,7 @@
 import { initGameState, Status } from "../constant"
 import actionTypes from "./actionTypes"
 import { createPosition } from "../helper"
+import { Mode } from "../constant"
 
 export const reducer = (state, action) =>{
 
@@ -88,9 +89,21 @@ export const reducer = (state, action) =>{
             }
         }
         case actionTypes.START_GAME : {
+            let {mode} = action.payload
+            if (mode === 'play_as_black'){
+                mode = Mode.play_as_black
+            }
+            else if(mode === 'play_as_white'){
+                mode = Mode.play_as_white
+            }
+            else if(mode === 'pass_and_play'){
+                mode = Mode.pass_and_play
+            }
             return {
                 ...initGameState,
-                status : Status.ongoing
+                status : Status.ongoing,
+                mode : mode,
+                flipped : mode === Mode.play_as_black ? true : false
             }
         }
         case actionTypes.FLIP_BOARD : {

@@ -71,6 +71,8 @@
     font-size: var(--block-size);
   }
   .modalButton {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     color : #f0f0f0;
     position: relative;
     height: var(--block-size);
@@ -81,6 +83,9 @@
     align-content: center;
     background-color: rgb(42, 147, 77);
     box-shadow: var(--shadow);
+  }
+  .modalButton:hover{
+    background-color: rgb(37, 103, 59);
   }
   .modeSelector {
     display: grid;
@@ -93,6 +98,8 @@
 
   }
   .options {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
     position: relative;
     display: grid;
     background-color: rgb(42, 147, 77);
@@ -105,4 +112,11 @@
   .options.selected {
     background-color: #6d746e;
     box-shadow: var(--shadow)
+  }
+
+  .options:hover {
+    background-color: #8a918b;
+  }
+  .options.selected:hover {
+    background-color: #5d635e;
   }

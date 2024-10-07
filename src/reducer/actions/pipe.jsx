@@ -18,9 +18,10 @@ export const staleMate = () => {
         type : actionTypes.STALEMATE,
     }
 }
-export const startGame = () => {
+export const startGame = mode => {
     return {
         type : actionTypes.START_GAME,
+        payload : mode
     }
 }
 export const flipBoard = () => {
