@@ -2,7 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    margin-top: calc(-.75 * var(--block-size));
     color: var(--light-block);
     width: calc(.4 * var(--block-size));
 }

@@ -9,7 +9,7 @@ html,body{
 .App {
   display: grid;
   place-content: center;
-  height: 100vh;
+  height:100vh;
   background: var(--bg-color);
   font-family: "Sofia Sans", sans-serif;
 }

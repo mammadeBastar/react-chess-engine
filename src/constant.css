@@ -1,8 +1,8 @@
 :root {
     --block-size: 110px;
-    --light-block: #e5f5e4;
-    --dark-block: #3b401d;
-    --bg-color: #151515;
+    --light-block: #fffafa;
+    --dark-block: #547b35;
+    --bg-color: #1d1e25;
     --highlight : rgba(0,0,0,0.1);
     --check : #d0b452;
     --mate : #7f0c0cf4;
@@ -17,7 +17,7 @@
 }
 @media all and (max-width : 1200px) {
     :root {
-        --block-size : 90px;
+        --block-size : 100px;
     }
 }
 @media all and (max-width : 500px) {
