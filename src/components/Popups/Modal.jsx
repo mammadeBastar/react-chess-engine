@@ -100,8 +100,8 @@ const Modal = ({mode}) => {
             </div>
             </div>)}
         {(mode === Status.settingup) && (<div className="setUp">
-            <div className="modalMassage">
-                select o ina
+            <div className="modalMassage ubuntu-bold">
+                Choose a game type
             </div>
             <div className="modeSelector">
                 <span 
