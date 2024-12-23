@@ -8,7 +8,8 @@ const actionTypes = {
     "CHECK_MATE" : "CHECK_MATE",
     "STALEMATE" : "STALEMATE",
     "START_GAME" : "START_GAME",
-    "FLIP_BOARD" : "FLIP_BOARD"
+    "FLIP_BOARD" : "FLIP_BOARD",
+    "SETUP" : "SETUP"
 }
 
 export default actionTypes

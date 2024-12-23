@@ -29,3 +29,8 @@ export const flipBoard = () => {
         type : actionTypes.FLIP_BOARD,
     }
 }
+export const setup = () => {
+    return {
+        type : actionTypes.SETUP,
+    }
+}

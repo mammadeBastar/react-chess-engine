@@ -20,9 +20,9 @@ function App() {
   }
   return (
       <AppContext.Provider value={providerState}>
-        <div className='App'>
+        <div className={`${modalShow === true ? 'preApp' : 'App'}`}>
           <Board/>
-          {modalShow && <Modal mode = {appState.status}/>}
+          <Modal mode = {appState.status} isOn={modalShow}/>
         </div>
       </AppContext.Provider>
   )

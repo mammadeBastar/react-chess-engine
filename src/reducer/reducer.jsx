@@ -114,6 +114,11 @@ export const reducer = (state, action) =>{
                 flipped : flipped
             }
         }
+        case actionTypes.SETUP : {
+            return {
+                ...initGameState
+            }
+        }
         default:
             return state
     }

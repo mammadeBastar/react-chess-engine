@@ -18,10 +18,14 @@
 
 .block--light {
     background: var(--light-block);
+    animation: dtol;
+    animation-duration: 0.05s;
 }
     
 .block--dark {
-    background: var(--dark-block)
+    background: var(--dark-block);
+    animation: ltod;
+    animation-duration: 0.05s;
 }
 .incheck::after {
     content: '';
@@ -80,4 +84,26 @@
     left: 0;
     top: 0;
     border: 6px solid var(--highlight);
+}
+@keyframes ltod {
+    0% {
+        background: var(--light-block);
+    }
+    50% {
+        background: #999999;
+    }   
+    100% {
+        background: var(--dark-block);
+    }
+}
+@keyframes dtol {
+    0% {
+        background: var(--dark-block);
+    }
+    50% {
+        background: #999999;
+    }
+    100% {
+        background: var(--light-block);
+    }
 }

@@ -9,17 +9,47 @@ html,body{
 
 .App {
   display: grid;
-  padding-right: 6.75vw;
+  padding-right: 15vw;
   place-content: center right;
   height:100vh;
   background: var(--bg-color);
   font-family: "Ubuntu", serif;
   font-weight: 500;
   font-style: normal;
+  animation: boardin;
+  animation-duration: 1.5s;
+}
+.preApp {
+  display: grid;
+  padding-right: 27.5vw;
+  place-content: center right;
+  height:100vh;
+  background: var(--bg-color);
+  font-family: "Ubuntu", serif;
+  font-weight: 500;
+  font-style: normal;
+  animation: boardout;
+  animation-duration: 1.5s;
 }
 .ubuntu-bold {
   font-family: "Ubuntu", serif;
   font-weight: 700;
   font-style: normal;
   color: #1d1e25;
+}
+@keyframes boardin {
+  0% {
+    padding-right: 27.5vw;
+  }
+  100% {
+    padding-right: 15vw;
+  }
+}
+@keyframes boardout {
+  0% {
+    padding-right: 15vw;
+  }
+  100% {
+    padding-right: 27.5vw;
+  }
 }

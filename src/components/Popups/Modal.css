@@ -8,7 +8,64 @@
     height: 100%;
     top: 0;
     left: 0;
+    animation: unshrinkModal;
+    animation-duration: 1.5s;
   }
+.sideStats {
+    display: grid;
+    position: absolute;
+    place-content: center;
+    grid-template-columns: calc(.20*var(--block-size) calc(8*var(--block-size)));
+    width: 30wh;
+    height: 100%;
+    top: 0;
+    left: 0;
+    animation: shrinkModal;
+    animation-duration: 1.5s;
+  }
+.sideStats .side {
+    display: grid;
+    position: relative;
+    width: 30vw;
+    height: 100vh;
+    background: var(--modal-bg);
+    border-radius: 0 calc(1 * var(--block-size)) calc(.2 * var(--block-size)) 0;
+    box-shadow: var(--shadow);
+    color: #1d1e25;
+    font-size: 1.5em;
+    text-align: center;
+    animation: slideleft;
+    animation-duration: 1.5s;
+  }
+.buttonWrapper {
+  position: relative;
+  top: 31.3vh;
+  display: flex;
+  flex-direction: column;
+}
+.sideButton {
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color : #f0f0f0;
+    position: relative;
+    margin-top: calc(.07 * var(--block-size));
+    height: var(--block-size);
+    width: calc(30vw - (.14 * var(--block-size)));
+    border-radius: calc(.132 * var(--block-size)) calc(.132 * var(--block-size)) calc(.132 * var(--block-size)) 0;
+    left : calc(.07 * var(--block-size));
+    align-content: center;
+    /*background-color: rgb(42, 147, 77);*/
+    background-color: var(--dark-block);
+    box-shadow: var(--shadow);
+  }
+.sideButton:hover{
+    /*background-color: rgb(37, 103, 59);*/
+    background-color: #c8672b;
+  }
+.title {
+  margin-top: var(--block-size);
+  font-size: 3em;
+}
 .modal .win {
     display: grid;
     position: relative;
@@ -22,6 +79,8 @@
     color: rgb(26, 131, 45);
     font-size: 1.5em;
     text-align: center;
+    animation: slideright;
+    animation-duration: 1.5s;
   }
   .modal .lose {
     display: grid;
@@ -36,6 +95,8 @@
     color: var(--mate);
     font-size: calc(.245 * var(--block-size));
     text-align: center;
+    animation: slideright;
+    animation-duration: 1.5s;
   }
   .modal .draw {
     display: grid;
@@ -50,6 +111,8 @@
     color: var(--stale-mate);
     font-size: calc(.245 * var(--block-size));
     text-align: center;
+    animation: slideright;
+    animation-duration: 1.5s;
   }
   .modal .setUp {
     display: grid;
@@ -64,6 +127,8 @@
     color: var(--stale-mate);
     font-size: calc(.245 * var(--block-size));
     text-align: center;
+    animation: slideright;
+    animation-duration: 1.5s;
   }
   .modalMassage {
     height: calc(3.26*var(--block-size));
@@ -81,11 +146,13 @@
     top : calc(.98 *  var(--block-size));
     left : calc(.07 * var(--block-size));
     align-content: center;
-    background-color: rgb(42, 147, 77);
+    /*background-color: rgb(42, 147, 77);*/
+    background-color: var(--dark-block);
     box-shadow: var(--shadow);
   }
   .modalButton:hover{
-    background-color: rgb(37, 103, 59);
+    /*background-color: rgb(37, 103, 59);*/
+    background-color: #c8672b;
   }
   .modeSelector {
     display: grid;
@@ -102,7 +169,8 @@
     transition: background-color 0.3s ease;
     position: relative;
     display: grid;
-    background-color: rgb(42, 147, 77);
+    /*background-color: rgb(42, 147, 77);*/
+    background-color: var(--dark-block);
     width: calc(1.91 * var(--block-size));
     border-radius: calc(.132 * var(--block-size));
     place-content: center;
@@ -120,3 +188,52 @@
   .options.selected:hover {
     background-color: #5d635e;
   }
+
+@keyframes slideleft {
+  from {
+    width: calc(6 * (var(--block-size)));
+    height: calc(8.4*var(--block-size));
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+  }
+  to {
+    width: 30vw;
+    height: 100vh;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 0 calc(1 * var(--block-size)) calc(.2 * var(--block-size)) 0;
+  }
+}
+@keyframes shrinkModal {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 30%;
+  }
+}
+@keyframes slideright {
+  from {
+    width: 30vw;
+    height: 100vh;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 0 calc(1 * var(--block-size)) calc(.2 * var(--block-size)) 0;
+  }
+  to {
+    width: calc(6 * (var(--block-size)));
+    height: calc(8.4*var(--block-size));
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+  }
+}
+@keyframes unshrinkModal {
+  from {
+    width: 30%;
+  }
+  to {
+    width: 100%;
+  }
+}

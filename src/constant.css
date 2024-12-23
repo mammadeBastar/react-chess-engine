@@ -1,7 +1,8 @@
 :root {
     --block-size: 110px;
     --light-block: #fffafa;
-    --dark-block: #547b35;
+    /*--dark-block: #547b35;*/
+    --dark-block: #ab6539;
     --bg-color: #1d1e25;
     --highlight : rgba(0,0,0,0.1);
     --check : #d0b452;

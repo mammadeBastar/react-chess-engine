@@ -1,18 +1,37 @@
 import { Status } from "../../constant"
 import {useAppContext} from "../../contexts/Context"
-import { startGame } from "../../reducer/actions/pipe"
+import { startGame, setup } from "../../reducer/actions/pipe"
 import './Modal.css'
 import { useState } from "react"
 
 
-const Modal = ({mode}) => {
+const Modal = ({mode, isOn}) => {
     const {appState, dispatch} = useAppContext()
     const [selected, setSelected] = useState('pass_and_play')
     const onClick = e => {
         e.preventDefault()
         dispatch(startGame({mode: selected}))
     }
-    return <div className="modal">
+    const onQuit = e => {
+        e.preventDefault()
+        dispatch(setup())
+    }
+    return <div className={`${isOn === true ? 'modal' : 'sideStats'}`}>
+        {(isOn === false) && (
+            <div className="side">
+                {(selected === 'pass_and_play') && <span className="title ubuntu-bold">Pass and Play</span>} 
+                {(selected === 'play_as_black') && <span className="title ubuntu-bold">Playing as White</span>} 
+                {(selected === 'play_as_white') && <span className="title ubuntu-bold">Playing as Black</span>} 
+                <div className="buttonWrapper">
+            <div className="sideButton" onClick={onClick}>
+                RESET
+            </div>
+            <div className="sideButton" onClick={onQuit}>
+                QUIT
+            </div>
+                </div>
+                </div>
+        )}
         {(mode === Status.white_won) && (<div className="win">
             <div className="modalMassage">
                 win
