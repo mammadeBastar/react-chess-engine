@@ -17,7 +17,7 @@ const Modal = ({mode, isOn}) => {
         dispatch(setup())
     }
     return <div className={`${isOn === true ? 'modal' : 'sideStats'}`}>
-        {(isOn === false) && (
+        {(isOn !== true) && (
             <div className="side">
                 {(selected === 'pass_and_play') && <span className="title ubuntu-bold">Pass and Play</span>} 
                 {(selected === 'play_as_black') && <span className="title ubuntu-bold">Playing as Black</span>} 
@@ -86,7 +86,7 @@ const Modal = ({mode, isOn}) => {
             </div>)}
         {(mode === Status.stalemate) && (<div className="draw">
             <div className="modalMassage">
-                draw
+                draw by stalemate
             </div>
             <div className="modeSelector">
                 <span 
@@ -112,7 +112,25 @@ const Modal = ({mode, isOn}) => {
             </div>)}
         {(mode === Status.insuffisient) && (<div className="draw">
             <div className="modalMassage">
-                draw
+                draw by insufficient material
+            </div>
+            <div className="modeSelector">
+                <span 
+                    className={`options ${selected === 'pass_and_play' ? 'selected' : ''}`}
+                    onClick={() => setSelected('pass_and_play')}
+                >
+                    pass and play
+                </span>
+                <span className={`options ${selected === 'play_as_white' ? 'selected' : ''}`}
+                    onClick={() => setSelected('play_as_white')}
+                    >
+                    play as white
+                </span>
+                <span className={`options ${selected === 'play_as_black' ? 'selected' : ''}`}
+                    onClick={() => setSelected('play_as_black')}
+                    >
+                    play as black
+                </span>
             </div>
             <div className="modalButton" onClick={onClick}>
                 click to start

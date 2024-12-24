@@ -6,7 +6,15 @@
     bottom: calc(.4 * var(--block-size));
 
 }
+.piecesr {
+    grid-row: 2;
+    right: 0;
+    top: 0;
+    position: absolute;
+    left : calc(.4 * var(--block-size));
+    bottom:0;
 
+}
 .piece {
     width: 12.5%;
     height: 12.5%;

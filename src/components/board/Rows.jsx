@@ -3,10 +3,11 @@ import './Rows.css'
 
 const Rows = ({rows}) => {
     const {appState} = useAppContext()
+    let flippedornot = "rows"
     if(appState.flipped){
-        
+        flippedornot = "rowsr"
     }
-    return <div className="rows">
+    return <div className={flippedornot}>
 
         {rows.map(row => {
             if(appState.flipped){

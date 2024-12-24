@@ -15,7 +15,7 @@ function App() {
     dispatch
   }
   let modalShow = false
-  if((appState.status === Status.black_won) || (appState.status === Status.white_won) || (appState.Status === Status.insuffisient) || (appState.status === Status.stalemate) || (appState.status === Status.settingup)){
+  if((appState.status === Status.black_won) || (appState.status === Status.white_won) || (appState.status === Status.insuffisient) || (appState.status === Status.stalemate) || (appState.status === Status.settingup)){
     modalShow = true
   }
   return (

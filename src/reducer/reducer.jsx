@@ -119,6 +119,12 @@ export const reducer = (state, action) =>{
                 ...initGameState
             }
         }
+        case actionTypes.INSUFFICIENT : {
+            return {
+                ...state,
+                status : Status.insuffisient
+            }
+        }
         default:
             return state
     }

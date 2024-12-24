@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { createPosition, copyPosition } from '../../helper.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
 import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
-import { checkMate, disableCastle , flipBoard, staleMate} from '../../reducer/actions/pipe.jsx'
+import { checkMate, disableCastle , flipBoard, staleMate, insufficientMaterial} from '../../reducer/actions/pipe.jsx'
 import engine from '../../engine/engine.jsx'
 import { promotionPop } from '../../reducer/actions/popup.jsx'
 import { Mode } from '../../constant.jsx'
@@ -58,6 +58,11 @@ const Pieces = () => {
                 dispatch(disableCastle({kind : 'r'}))
             }
             dispatch(makeNewMove({newPosition}))
+            if(engine.insufficient({pos : newPosition})){
+                dispatch(clearPos())
+                dispatch(insufficientMaterial())
+                return
+            }
             const next_turn = piece[0] === 'w' ? 'b' : 'w'
             if(engine.cantMove({posHistory : [...appState.position, newPosition], color : next_turn, allowedCastle : appState.allowedCastle[next_turn]})){
                 dispatch(clearPos())
@@ -70,7 +75,7 @@ const Pieces = () => {
             }
             if(appState.mode === Mode.pass_and_play) dispatch(flipBoard())
         }
-        dispatch(clearPos())
+    dispatch(clearPos())
     }
 
     const onDrop = e => {
@@ -82,10 +87,13 @@ const Pieces = () => {
     const onDragOver = e => {
         e.preventDefault()
     }
-
+    let flippedornot = 'pieces'
+    if(appState.flipped){
+        flippedornot = 'piecesr'
+    }
     return <div 
         ref={ref}
-        className='pieces'
+        className={flippedornot}
         onDrop={onDrop}
         onDragOver={onDragOver}
     >

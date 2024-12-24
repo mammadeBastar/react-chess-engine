@@ -99,6 +99,23 @@ const engine = {
             return true
         }
         return false
+    },
+    insufficient : function({pos}){
+        console.log(pos)
+        const whitePieces = inBordPieces({pos, color : 'w'})
+        const blackPieces = inBordPieces({pos, color : 'b'})
+        console.log(whitePieces)
+        console.log(blackPieces)
+        if(whitePieces.length + blackPieces.length === 2){
+            return true
+        }
+        if(whitePieces.length + blackPieces.length === 3 && (whitePieces.some(p => p.piece.endsWith('b') || p.piece.endsWith('n')) || blackPieces.some(p => p.piece.endsWith('b') || p.piece.endsWith('n')))){
+            return true
+        }
+        if(whitePieces.length + blackPieces.length === 4 && whitePieces.length === 2 && whitePieces.some(p => p.piece.endsWith('b') || p.piece.endsWith('n')) && blackPieces.some(p => p.piece.endsWith('b') || p.piece.endsWith('n'))){
+            return true
+        }
+        return false
     }
 }
 

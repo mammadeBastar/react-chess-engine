@@ -9,7 +9,8 @@ const actionTypes = {
     "STALEMATE" : "STALEMATE",
     "START_GAME" : "START_GAME",
     "FLIP_BOARD" : "FLIP_BOARD",
-    "SETUP" : "SETUP"
+    "SETUP" : "SETUP",
+    "INSUFFICIENT" : "INSUFFICIENT"
 }
 
 export default actionTypes

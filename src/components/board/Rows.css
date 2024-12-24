@@ -1,9 +1,21 @@
 .rows {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:  center;
     justify-content: space-evenly;
-    margin-top: calc(-.75 * var(--block-size));
+    margin-top: calc(-.375 * var(--block-size));
+    margin-bottom: calc(-.375 * var(--block-size));
     color: var(--light-block);
     width: calc(.4 * var(--block-size));
+}
+.rowsr {
+    display: flex;
+    flex-direction: column;
+    align-items:  center;
+    justify-content: space-evenly;
+    margin-top: calc(-.375 * var(--block-size));
+    margin-bottom: calc(-.375 * var(--block-size));
+    color: var(--light-block);
+    grid-row: 2;
+    width: calc(.4 * var(--block-size)); 
 }

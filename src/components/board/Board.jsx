@@ -86,11 +86,15 @@ const Board = () => {
         
         return c
     }
-    return <div className = 'board'>
+    let flippedornot = 'blockes'
+    if(appState.flipped){
+        flippedornot = 'blockesr'
+    }
+    return <div className = {`board ${appState.flipped ? '' : 'margdown'}`}>
 
         <Rows rows = {rows}></Rows>
 
-        <div className='blockes'>
+        <div className={flippedornot}>
             {rows.map((row, i) => 
                 columns.map((column, j) => 
                     <div key={column + ' ' + row} className={getClassName(7-i, j)}>

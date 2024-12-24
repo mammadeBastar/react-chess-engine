@@ -6,3 +6,12 @@
     color: var(--light-block);
     height: calc(.4 * var(--block-size));
 }
+.columnsr {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--light-block);
+    height: calc(.4 * var(--block-size));
+}

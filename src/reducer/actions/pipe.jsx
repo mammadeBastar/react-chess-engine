@@ -34,3 +34,8 @@ export const setup = () => {
         type : actionTypes.SETUP,
     }
 }
+export const insufficientMaterial = () => {
+    return {
+        type : actionTypes.INSUFFICIENT,
+    }
+}
