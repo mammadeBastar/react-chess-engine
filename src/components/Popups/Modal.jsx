@@ -20,8 +20,8 @@ const Modal = ({mode, isOn}) => {
         {(isOn === false) && (
             <div className="side">
                 {(selected === 'pass_and_play') && <span className="title ubuntu-bold">Pass and Play</span>} 
-                {(selected === 'play_as_black') && <span className="title ubuntu-bold">Playing as White</span>} 
-                {(selected === 'play_as_white') && <span className="title ubuntu-bold">Playing as Black</span>} 
+                {(selected === 'play_as_black') && <span className="title ubuntu-bold">Playing as Black</span>} 
+                {(selected === 'play_as_white') && <span className="title ubuntu-bold">Playing as White</span>} 
                 <div className="buttonWrapper">
             <div className="sideButton" onClick={onClick}>
                 RESET

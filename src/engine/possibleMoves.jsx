@@ -123,7 +123,7 @@ export const possiblePawnMoves = ({pos, piece, row, column}) => {
     if(pos[row+dir][column] === ''){
         moves.push([row+dir, column])
         if(row%5 === 1){
-            if(pos[row+2*dir][column] === ''){
+            if(pos?.[row+2*dir]?.[column] === ''){
                 moves.push([row+2*dir, column])
             } 
     }}
