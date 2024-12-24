@@ -12,12 +12,12 @@ dist
 dist-ssr
 *.local
 
-src/hooks
-src/hooks/*
-src/lib
-src/lib/*
-src/components/ui
-src/components/ui/*
+/src/hooks
+/src/hooks/
+/src/lib
+/src/lib/
+/src/components/ui
+/src/components/ui/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
