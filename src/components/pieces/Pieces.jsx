@@ -4,7 +4,7 @@ import { useState, useRef } from 'react'
 import { createPosition, copyPosition } from '../../helper.jsx'
 import { useAppContext } from '../../contexts/Context.jsx'
 import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
-import { checkMate, disableCastle , flipBoard, staleMate, insufficientMaterial} from '../../reducer/actions/pipe.jsx'
+import { checkMate, disableCastle , flipBoard, staleMate, insufficientMaterial, select} from '../../reducer/actions/pipe.jsx'
 import engine from '../../engine/engine.jsx'
 import { promotionPop } from '../../reducer/actions/popup.jsx'
 import { Mode } from '../../constant.jsx'
@@ -83,6 +83,51 @@ const Pieces = () => {
         mew(e)
     }
 
+    const onClick = e => {
+        e.preventDefault()
+        if(appState.select !== ''){
+            const {x, y} = movecalc(e)
+            const [row, column] = [parseInt(appState.select[0]), parseInt(appState.select[1])]
+            const piece = currentPosition[row][column]
+            if(appState.posMoves.find(m => m[0] === x && m[1] ===y)){
+                if((piece == 'wp' && x === 7) || (piece === 'bp' && x ===0)){
+                    popPromotionUp({row, column, x, y})
+                    return 
+                }
+                const newPosition = engine.move({
+                    pos : currentPosition,
+                    piece , row, column,
+                    x, y
+                })
+                if(piece.endsWith('k')) dispatch(disableCastle({kind : 'none'}))
+                if(piece.endsWith('r') && column === 7){
+                    dispatch(disableCastle({kind : 'l'}))
+                }
+                if(piece.endsWith('r') && column === 0){
+                    dispatch(disableCastle({kind : 'r'}))
+                }
+                dispatch(makeNewMove({newPosition}))
+                if(engine.insufficient({pos : newPosition})){
+                    dispatch(clearPos())
+                    dispatch(insufficientMaterial())
+                    return
+                }
+                const next_turn = piece[0] === 'w' ? 'b' : 'w'
+                if(engine.cantMove({posHistory : [...appState.position, newPosition], color : next_turn, allowedCastle : appState.allowedCastle[next_turn]})){
+                    dispatch(clearPos())
+                    if(engine.inCheck({pos : newPosition, prevPos : currentPosition, color : next_turn})){
+                        dispatch(checkMate(piece[0]))
+                        return
+                    }
+                    dispatch(staleMate())
+                    return
+                }
+                if(appState.mode === Mode.pass_and_play) dispatch(flipBoard())
+            }
+        dispatch(clearPos())
+        dispatch(select(''))
+        }
+    }
 
     const onDragOver = e => {
         e.preventDefault()
@@ -96,6 +141,7 @@ const Pieces = () => {
         className={flippedornot}
         onDrop={onDrop}
         onDragOver={onDragOver}
+        onClick={onClick}
     >
         {currentPosition.map((r, row) =>
             r.map((c, column) => {

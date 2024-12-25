@@ -26,5 +26,6 @@ export const initGameState = {
         b : 'lr'
     },
     flipped : false,
-    mode : Mode.pass_and_play
+    mode : Mode.pass_and_play,
+    select : ''
 }

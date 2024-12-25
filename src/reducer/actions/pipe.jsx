@@ -39,3 +39,9 @@ export const insufficientMaterial = () => {
         type : actionTypes.INSUFFICIENT,
     }
 }
+export const select = block => {
+    return {
+        type : actionTypes.SELECT,
+        payload : block
+    }
+}

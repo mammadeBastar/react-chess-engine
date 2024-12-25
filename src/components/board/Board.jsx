@@ -29,6 +29,11 @@ const Board = () => {
 
     const getClassName = (i, j) => {
         let c = 'block'
+        if(appState.select !== ''){
+            if(parseInt(appState.select[0]) === i && parseInt(appState.select[1]) === j){
+                c+= ' chose'
+            }
+        }
         if(!appState.flipped){
             c += (i+j) % 2 === 0 ? ' block--dark' : ' block--light'
             if(appState.posMoves?.find(m => m[0] === i && m[1] ===j)){

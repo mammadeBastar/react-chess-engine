@@ -10,7 +10,8 @@ const actionTypes = {
     "START_GAME" : "START_GAME",
     "FLIP_BOARD" : "FLIP_BOARD",
     "SETUP" : "SETUP",
-    "INSUFFICIENT" : "INSUFFICIENT"
+    "INSUFFICIENT" : "INSUFFICIENT",
+    "SELECT" : "SELECT"
 }
 
 export default actionTypes

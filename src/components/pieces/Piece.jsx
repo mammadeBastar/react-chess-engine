@@ -1,6 +1,7 @@
 import { useAppContext } from "../../contexts/Context"
 import engine from "../../engine/engine";
 import { generatePosMoves } from "../../reducer/actions/move";
+import { select } from "../../reducer/actions/pipe";
 const Piece = ({row, column, piece}) => {
 
     const {appState, dispatch} = useAppContext()
@@ -20,6 +21,15 @@ const Piece = ({row, column, piece}) => {
             dispatch(generatePosMoves({posMoves}))
         }
     }
+    const onClick = e => {
+        e.preventDefault()
+        if(turn === piece[0]){
+            const posMoves = engine.possibleValMoves({posHistory:position, piece , row : row, column,allowedCastle : allowedCastle[turn]})
+            let block = `${row}${column}`
+            dispatch(select(block))
+            dispatch(generatePosMoves({posMoves}))
+        }
+    }
 
     const onDragEnd = e => e.target.style.display = 'block'
 
@@ -28,6 +38,7 @@ const Piece = ({row, column, piece}) => {
         draggable = {true}
         onDragEnd={onDragEnd}
         onDragStart={onDragStart}
+        onClick={onClick}
         />
 
 }
