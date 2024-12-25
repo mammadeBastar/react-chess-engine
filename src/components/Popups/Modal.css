@@ -1,15 +1,23 @@
 @media screen and (max-width : 1700px){
   .sideStats {
-    display: none !important;
+    position: absolute !important;
+    top: 60vh !important;
+    place-content: end !important;
+    width: 100% !important;
+    height: 40vh !important;
+    font-size: 0.7em !important;
   }
   .sideStats .side {
-    display: none !important;
+    width: 100vw !important;
+    height: 40vh !important;
+    text-align: start center !important;
   }
   .buttonWrapper {
-    display: none !important;
+    position: relative;
+    top: 7vh !important;
   }
   .sideButton {
-    display: none !important;
+    width: 98.5% !important;
   }
 }
 .modal {

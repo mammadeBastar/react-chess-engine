@@ -100,7 +100,7 @@ const Board = () => {
     if(appState.flipped){
         flippedornot = 'blockesr'
     }
-    return <div className = {`board ${appState.flipped ? '' : 'margdown'}`}>
+    return <div className = {`board ${appState.flipped ? 'mobdown' : 'margdown'}`}>
 
         <Rows rows = {rows}></Rows>
 

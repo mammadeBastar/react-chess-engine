@@ -1,3 +1,10 @@
+@media screen and (max-width : 1700px){
+    .mobdown {
+        margin-top: calc(.4 * var(--block-size)) !important;
+    }
+}
+
+
 .board {
     display: grid;
     position: relative;

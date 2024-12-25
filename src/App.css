@@ -8,16 +8,17 @@ html,body{
 }
 @media screen and (max-width : 1700px){
   .App {
-    place-content: center !important;
-    padding-right: 0 !important;
+    place-content: start center !important;
+    padding-right: calc(.3 * var(--block-size)) !important;
     animation: none !important;
     font-size: 3vw;
   }
   .preApp {
-    place-content: center !important;
-    padding-right: 0 !important;
+    place-content: start center !important;
+    padding-right: calc(.3 * var(--block-size)) !important;
     animation: none !important;
     font-size: 3vw;
+
   }
 }
 .App {
