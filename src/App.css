@@ -6,7 +6,18 @@ html,body{
   margin: 0;
   padding: 0;
 }
-
+@media screen and (max-width : 1700px){
+  .App {
+    place-content: center !important;
+    padding-right: 0 !important;
+    animation: none !important;
+  }
+  .preApp {
+    place-content: center !important;
+    padding-right: 0 !important;
+    animation: none !important;
+  }
+}
 .App {
   display: grid;
   padding-right: 15vw;

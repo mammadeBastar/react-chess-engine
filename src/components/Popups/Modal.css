@@ -1,3 +1,17 @@
+@media screen and (max-width : 1700px){
+  .sideStats {
+    display: none !important;
+  }
+  .sideStats .side {
+    display: none !important;
+  }
+  .buttonWrapper {
+    display: none !important;
+  }
+  .sideButton {
+    display: none !important;
+  }
+}
 .modal {
     background: rgba(40, 40, 40, 0.7);
     display: grid;
