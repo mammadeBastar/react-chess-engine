@@ -11,11 +11,13 @@ html,body{
     place-content: center !important;
     padding-right: 0 !important;
     animation: none !important;
+    font-size: 3vw;
   }
   .preApp {
     place-content: center !important;
     padding-right: 0 !important;
     animation: none !important;
+    font-size: 3vw;
   }
 }
 .App {
