@@ -1,10 +1,10 @@
 @media screen and (max-width : 1700px){
   .sideStats {
     position: absolute !important;
-    top: 65vh !important;
+    top: 60vh !important;
     place-content: end !important;
     width: 100% !important;
-    height: 35vh !important;
+    height: 40vh !important;
     font-size: 0.7em !important;
     animation: none !important;
     /* animation-duration: 3s !important; */
@@ -12,7 +12,7 @@
   .sideStats .side {
     width: 100vw !important;
     border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0 !important;
-    height: 35vh !important;
+    height: 40vh !important;
     text-align: start center !important;
     animation: none !important;
     /* animation-duration: 3s !important; */ 
@@ -30,18 +30,22 @@
   }
   .modal .lose {
     animation: none !important;
+    left: calc(.05 * var(--block-size)) !important;
     /* animation-duration: 3s !important; */
   }
   .modal .win {
     animation: none !important;
+    left: calc(.05 * var(--block-size)) !important;
     /* animation-duration: 3s !important; */
   }
   .modal .draw {
     animation: none !important;
+    left: calc(.05 * var(--block-size)) !important;
     /* animation-duration: 3s !important; */
   }
   .modal .setUp {
     animation: none !important;
+    left: calc(.05 * var(--block-size)) !important;
     /* animation-duration: 3s !important; */
   }
 }
