@@ -6,8 +6,7 @@ const Piece = ({row, column, piece}) => {
 
     const {appState, dispatch} = useAppContext()
     const {turn, position, allowedCastle} = appState
-    let sel = ''
-
+    
     const trow = appState.flipped === true ? 7 - row : row
     
     const onDragStart = e => {
@@ -34,7 +33,7 @@ const Piece = ({row, column, piece}) => {
     const onDragEnd = e => e.target.style.display = 'block'
 
     return <div 
-        className={`piece ${piece} p-${column}${trow} ${sel}`}
+        className={`piece ${piece} p-${column}${trow}`}
         draggable = {true}
         onDragEnd={onDragEnd}
         onDragStart={onDragStart}

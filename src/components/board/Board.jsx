@@ -29,12 +29,12 @@ const Board = () => {
 
     const getClassName = (i, j) => {
         let c = 'block'
-        if(appState.select !== ''){
-            if(parseInt(appState.select[0]) === i && parseInt(appState.select[1]) === j){
-                c+= ' chose'
-            }
-        }
         if(!appState.flipped){
+            if(appState.select !== ''){
+                if(parseInt(appState.select[0]) === i && parseInt(appState.select[1]) === j){
+                    c+= ' chose'
+                }
+            }
             c += (i+j) % 2 === 0 ? ' block--dark' : ' block--light'
             if(appState.posMoves?.find(m => m[0] === i && m[1] ===j)){
                 if(position[i][j]){
@@ -61,6 +61,11 @@ const Board = () => {
             }
         }
         else{
+            if(appState.select !== ''){
+                if(parseInt(appState.select[0]) === (7-i) && parseInt(appState.select[1]) === j){
+                    c+= ' chose'
+                }
+            }
             c += (i+j) % 2 === 0 ? ' block--light' : ' block--dark'
             if(appState.posMoves?.find(m => m[0] === (7 - i) && m[1] ===j)){
                 if(position[7 - i][j]){
