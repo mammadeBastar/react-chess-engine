@@ -1,23 +1,48 @@
 @media screen and (max-width : 1700px){
   .sideStats {
     position: absolute !important;
-    top: 60vh !important;
+    top: 65vh !important;
     place-content: end !important;
     width: 100% !important;
-    height: 40vh !important;
+    height: 35vh !important;
     font-size: 0.7em !important;
+    animation: none !important;
+    /* animation-duration: 3s !important; */
   }
   .sideStats .side {
     width: 100vw !important;
-    height: 40vh !important;
+    border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0 !important;
+    height: 35vh !important;
     text-align: start center !important;
+    animation: none !important;
+    /* animation-duration: 3s !important; */ 
   }
   .buttonWrapper {
     position: relative;
-    top: 7vh !important;
+    top: 0vh !important;
   }
   .sideButton {
     width: 98.5% !important;
+  }
+  .modal {
+    animation: none !important;
+    /* animation-duration: 3s !important; */
+  }
+  .modal .lose {
+    animation: none !important;
+    /* animation-duration: 3s !important; */
+  }
+  .modal .win {
+    animation: none !important;
+    /* animation-duration: 3s !important; */
+  }
+  .modal .draw {
+    animation: none !important;
+    /* animation-duration: 3s !important; */
+  }
+  .modal .setUp {
+    animation: none !important;
+    /* animation-duration: 3s !important; */
   }
 }
 .modal {
@@ -257,5 +282,53 @@
   }
   to {
     width: 100%;
+  }
+}
+@keyframes mobileIn {
+  from{
+    width: calc(6 * (var(--block-size)));
+    height: calc(8.4*var(--block-size));
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+  }
+  to{
+    width: 100vw;
+    height: 35vh;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0;
+  }
+}
+@keyframes shrinkMobile {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 35vh;
+  }
+}
+@keyframes mobileOut {
+  from{
+    width: 100vw;
+    height: 35vh;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0;
+  }
+  to{
+    width: calc(6 * (var(--block-size)));
+    height: calc(8.4*var(--block-size));
+    bottom: calc(.2 * var(--block-size));
+    left: calc(.2 * var(--block-size));
+    border-radius: calc(.2 * var(--block-size));
+  }
+}
+@keyframes unShrinkMobile {
+  from {
+    height: 35vh;
+  }
+  to {
+    height: 100%;
   }
 }
