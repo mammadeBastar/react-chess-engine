@@ -18,16 +18,16 @@
 }
 @media all and (max-width : 1200px) {
     :root {
-        --block-size : 11vw;
+        --block-size : 11dvw;
     }
 }
 @media all and (max-width : 690px) {
     :root {
-        --block-size: 10vw;
+        --block-size: 10dvw;
     }
 }
 @media all and (max-width : 450px) {
     :root {
-        --block-size: 11vw;
+        --block-size: 11dvw;
     }
 }

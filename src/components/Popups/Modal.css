@@ -1,25 +1,25 @@
 @media screen and (max-width : 1700px){
   .sideStats {
     position: absolute !important;
-    top: 60vh !important;
+    top: 60dvh !important;
     place-content: end !important;
     width: 100% !important;
-    height: 40vh !important;
+    height: 40dvh !important;
     font-size: 0.7em !important;
     animation: none !important;
     /* animation-duration: 3s !important; */
   }
   .sideStats .side {
-    width: 100vw !important;
+    width: 100dvw !important;
     border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0 !important;
-    height: 40vh !important;
+    height: 40dvh !important;
     text-align: start center !important;
     animation: none !important;
     /* animation-duration: 3s !important; */ 
   }
   .buttonWrapper {
     position: relative;
-    top: 0vh !important;
+    top: 0dvh !important;
   }
   .sideButton {
     width: 98.5% !important;
@@ -77,8 +77,8 @@
 .sideStats .side {
     display: grid;
     position: relative;
-    width: 30vw;
-    height: 100vh;
+    width: 30dvw;
+    height: 100dvh;
     background: var(--modal-bg);
     border-radius: 0 calc(1 * var(--block-size)) calc(.2 * var(--block-size)) 0;
     box-shadow: var(--shadow);
@@ -90,7 +90,7 @@
   }
 .buttonWrapper {
   position: relative;
-  top: 31.3vh;
+  top: 31.3dvh;
   display: flex;
   flex-direction: column;
 }
@@ -101,7 +101,7 @@
     position: relative;
     margin-top: calc(.07 * var(--block-size));
     height: var(--block-size);
-    width: calc(30vw - (.14 * var(--block-size)));
+    width: calc(30dvw - (.14 * var(--block-size)));
     border-radius: calc(.132 * var(--block-size)) calc(.132 * var(--block-size)) calc(.132 * var(--block-size)) 0;
     left : calc(.07 * var(--block-size));
     align-content: center;
@@ -249,8 +249,8 @@
     border-radius: calc(.2 * var(--block-size));
   }
   to {
-    width: 30vw;
-    height: 100vh;
+    width: 30dvw;
+    height: 100dvh;
     bottom: 0px;
     left: 0px;
     border-radius: 0 calc(1 * var(--block-size)) calc(.2 * var(--block-size)) 0;
@@ -266,8 +266,8 @@
 }
 @keyframes slideright {
   from {
-    width: 30vw;
-    height: 100vh;
+    width: 30dvw;
+    height: 100dvh;
     bottom: 0px;
     left: 0px;
     border-radius: 0 calc(1 * var(--block-size)) calc(.2 * var(--block-size)) 0;
@@ -297,8 +297,8 @@
     border-radius: calc(.2 * var(--block-size));
   }
   to{
-    width: 100vw;
-    height: 35vh;
+    width: 100dvw;
+    height: 35dvh;
     bottom: 0px;
     left: 0px;
     border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0;
@@ -309,13 +309,13 @@
     height: 100%;
   }
   to {
-    height: 35vh;
+    height: 35dvh;
   }
 }
 @keyframes mobileOut {
   from{
-    width: 100vw;
-    height: 35vh;
+    width: 100dvw;
+    height: 35dvh;
     bottom: 0px;
     left: 0px;
     border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0;
@@ -330,7 +330,7 @@
 }
 @keyframes unShrinkMobile {
   from {
-    height: 35vh;
+    height: 35dvh;
   }
   to {
     height: 100%;

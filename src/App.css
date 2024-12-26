@@ -11,21 +11,21 @@ html,body{
     place-content: start center !important;
     padding-right: calc(.3 * var(--block-size)) !important;
     animation: none !important;
-    font-size: 3vw;
+    font-size: 3dvw;
   }
   .preApp {
     place-content: start center !important;
     padding-right: calc(.3 * var(--block-size)) !important;
     animation: none !important;
-    font-size: 3vw;
+    font-size: 3dvw;
 
   }
 }
 .App {
   display: grid;
-  padding-right: 15vw;
+  padding-right: 15dvw;
   place-content: center right;
-  height:100vh;
+  height:100dvh;
   background: var(--bg-color);
   font-family: "Ubuntu", serif;
   font-weight: 500;
@@ -35,9 +35,9 @@ html,body{
 }
 .preApp {
   display: grid;
-  padding-right: 27.5vw;
+  padding-right: 27.5dvw;
   place-content: center right;
-  height:100vh;
+  height:100dvh;
   background: var(--bg-color);
   font-family: "Ubuntu", serif;
   font-weight: 500;
@@ -53,17 +53,17 @@ html,body{
 }
 @keyframes boardin {
   0% {
-    padding-right: 27.5vw;
+    padding-right: 27.5dvw;
   }
   100% {
-    padding-right: 15vw;
+    padding-right: 15dvw;
   }
 }
 @keyframes boardout {
   0% {
-    padding-right: 15vw;
+    padding-right: 15dvw;
   }
   100% {
-    padding-right: 27.5vw;
+    padding-right: 27.5dvw;
   }
 }
