@@ -1,10 +1,10 @@
 @media screen and (max-width : 1700px){
   .sideStats {
     position: absolute !important;
-    top: 60dvh !important;
+    top: 65dvh !important;
     place-content: end !important;
     width: 100% !important;
-    height: 40dvh !important;
+    height: 35dvh !important;
     font-size: 0.7em !important;
     animation: none !important;
     /* animation-duration: 3s !important; */
@@ -12,7 +12,7 @@
   .sideStats .side {
     width: 100dvw !important;
     border-radius: 0 calc(0.5 * var(--block-size)) calc(.1 * var(--block-size)) 0 !important;
-    height: 40dvh !important;
+    height: 35dvh !important;
     text-align: start center !important;
     animation: none !important;
     /* animation-duration: 3s !important; */ 
