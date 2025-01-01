@@ -1,4 +1,4 @@
-import { initGameState, Status } from "../constant"
+import { initBlackGameState, initGameState, Status } from "../constant"
 import actionTypes from "./actionTypes"
 import { createPosition } from "../helper"
 import { Mode } from "../constant"
@@ -93,6 +93,9 @@ export const reducer = (state, action) =>{
             let {mode} = action.payload
             if (mode === 'play_as_black'){
                 mode = Mode.play_as_black
+                return {
+                    ...initBlackGameState
+                }
             }
             else if(mode === 'play_as_white'){
                 mode = Mode.play_as_white

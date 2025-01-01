@@ -1,4 +1,4 @@
-import { createPosition } from "./helper"
+import { createBlackTurnPosition, createPosition } from "./helper"
 
 export const Status = {
     'ongoing' : 'Ongoing',
@@ -27,5 +27,19 @@ export const initGameState = {
     },
     flipped : false,
     mode : Mode.pass_and_play,
+    select : ''
+}
+export const initBlackGameState = {
+    position : [createBlackTurnPosition()],
+    turn : 'b',
+    posMoves : [],
+    status : Status.ongoing,
+    promotingLocation : null,
+    allowedCastle: {
+        w : 'lr',
+        b : 'lr'
+    },
+    flipped : true,
+    mode : Mode.play_as_black,
     select : ''
 }
