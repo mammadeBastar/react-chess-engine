@@ -15,6 +15,18 @@
     margin-top: calc(.8 * var(--block-size));
 }
 
+.machine::after {
+    z-index: 3;
+    content: "machine is thinking";
+    width: 10dvw;
+    height: 5dvw;
+    left: 11dvw;
+    top: 10dvw;
+    position: fixed;
+
+    pointer-events: none !important;
+}
+
 .blockes {
     display: grid;
     grid-template-columns: repeat(8, var(--block-size));

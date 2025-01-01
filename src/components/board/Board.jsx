@@ -6,18 +6,59 @@ import { useAppContext } from '../../contexts/Context.jsx'
 import Popups from '../Popups/Popups.jsx'
 import '../pieces/Pieces.css'
 import engine from '../../engine/engine.jsx'
-import { inBordPieces, kingPos } from '../../engine/move.jsx'
-import { checkMate } from '../../reducer/actions/pipe.jsx'
-import { Status } from '../../constant.jsx'
+import { inBordPieces, kingPos} from '../../engine/move.jsx'
+import { Status, Mode } from '../../constant.jsx'
 import Piece from '../pieces/Piece.jsx'
-
+import { makeNewMove,clearPos } from '../../reducer/actions/move.jsx'
+import { checkMate, disableCastle , flipBoard, staleMate, insufficientMaterial, select} from '../../reducer/actions/pipe.jsx'
+import { useEffect, useState } from 'react'
 const Board = () => {
-    
     const rows = Array(8).fill().map((x, i) => 8 - i)
     const columns = Array(8).fill().map((x, i) => i + 1)
-
     const {appState, dispatch} = useAppContext()
     const position = appState.position[appState.position.length - 1]
+    const [isMachine, setIsMachine] = useState(false)
+    useEffect(() => {
+        if((((appState.turn === 'w') && (appState.mode === Mode.play_as_black)) || ((appState.turn === 'b') && (appState.mode === Mode.play_as_white)))){
+            setIsMachine(true)
+            setTimeout(()=>{
+            const {bestMove} = engine.machineChoice({posHistory :appState.position, color : appState.turn, allowedCastle : appState.allowedCastle })
+            const [x, y, piece , row, column] = [bestMove.moveX, bestMove.moveY, bestMove.piece, bestMove.initRow, bestMove.initColumn]
+            const newPosition = engine.move({
+                pos : position,
+                piece , row, column,
+                x, y
+            })
+            if(piece.endsWith('k')){dispatch(disableCastle({kind : 'none'}))}
+            if(piece.endsWith('r') && column === 7){
+                dispatch(disableCastle({kind : 'l'}))
+            }
+            if(piece.endsWith('r') && column === 0){
+                dispatch(disableCastle({kind : 'r'}))
+            }
+            dispatch(makeNewMove({newPosition}))
+            if(engine.insufficient({pos : newPosition})){
+                dispatch(clearPos())
+                dispatch(insufficientMaterial())
+                return
+            }
+            const next_turn = piece[0] === 'w' ? 'b' : 'w'
+            if(engine.cantMove({posHistory : [...appState.position, newPosition], color : next_turn, allowedCastle : appState.allowedCastle[next_turn]})){
+                dispatch(clearPos())
+                if(engine.inCheck({pos : newPosition, prevPos : currentPosition, color : next_turn})){
+                    dispatch(checkMate(piece[0]))
+                    return
+                }
+                dispatch(staleMate())
+                return
+            }
+            dispatch(clearPos())
+            }, 5)
+        }
+        else{
+            setIsMachine(false)
+        }
+    }, [appState.turn])
 
     const checked = (() => {
 
@@ -100,7 +141,7 @@ const Board = () => {
     if(appState.flipped){
         flippedornot = 'blockesr'
     }
-    return <div className = {`board ${appState.flipped ? 'mobdown' : 'margdown'}`}>
+    return <div className = {`board ${appState.flipped ? 'mobdown' : 'margdown'} ${isMachine ? 'machine' : ''}`}>
 
         <Rows rows = {rows}></Rows>
 
@@ -118,7 +159,6 @@ const Board = () => {
         <Popups></Popups>
             
         <Columns columns = {columns}></Columns>
-
     </div>
 }
 

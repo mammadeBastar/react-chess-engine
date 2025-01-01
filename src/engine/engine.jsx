@@ -1,3 +1,4 @@
+import { findBestMove } from "./agi.jsx"
 import {kingPos, inBordPieces, movePawn, movePiece } from "./move.jsx"
 import {castlingMoves, pawnCaptures,possiblePawnMoves, possibleRookMoves, possibleKnightMoves, possibleBishopMoves, possibleQueenMoves, possibleKingMoves} from "./possibleMoves.jsx"
 
@@ -101,11 +102,8 @@ const engine = {
         return false
     },
     insufficient : function({pos}){
-        console.log(pos)
         const whitePieces = inBordPieces({pos, color : 'w'})
         const blackPieces = inBordPieces({pos, color : 'b'})
-        console.log(whitePieces)
-        console.log(blackPieces)
         if(whitePieces.length + blackPieces.length === 2){
             return true
         }
@@ -116,6 +114,11 @@ const engine = {
             return true
         }
         return false
+    },
+    machineChoice : function({posHistory, color, allowedCastle}){
+        const isWhite = color === 'w' ? true : false
+        const bestMove = findBestMove({posHistory, isWhite, allowedCastle})
+        return {bestMove}
     }
 }
 

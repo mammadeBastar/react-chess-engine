@@ -77,7 +77,6 @@ const Pieces = () => {
         }
     dispatch(clearPos())
     }
-
     const onDrop = e => {
         e.preventDefault()
         mew(e)

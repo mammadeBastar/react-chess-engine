@@ -132,6 +132,9 @@ export const reducer = (state, action) =>{
                 select : action.payload
             }
         }
+        case actionTypes.MACHINE_MOVE : {
+            
+        }
         default:
             return state
     }
